@@ -2,7 +2,12 @@ const http = require("http");
 const { WebSocketServer, WebSocket } = require("ws");
 
 const PORT = process.env.PORT || 8080; // Use Render's port
-const server = http.createServer();
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("WebSocket signaling server is running.\n");
+});
+
 const wss = new WebSocketServer({ server });
 
 const clients = new Map();
